@@ -25,4 +25,23 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    /**
+     * Show the user's profile page
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show(){
+        return view('users.profile-page');
+    }
+
+    /**
+     * Change the user's information
+     *
+     */
+    public function edit(){
+
+
+        redirect('show');
+    }
 }
