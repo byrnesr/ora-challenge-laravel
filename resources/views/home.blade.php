@@ -11,7 +11,7 @@
                     You are logged in!
                     <ul>
                         <li>
-                            <a href="{{ url('/chats') }}" method="GET">Chats</a>
+                            <a href="{{ url('/chats') }}">Chats</a>
                         </li>
                     </ul>
                 </div>

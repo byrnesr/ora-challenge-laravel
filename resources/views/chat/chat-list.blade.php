@@ -15,7 +15,11 @@
         <div class="panel-body">
             <ul>
                 @foreach ($chats as $chat)
-                    <li>Chat: {{ $chat->name }}</li>
+                    <a href='/chat/{{ $chat->id }}'>
+                        <div>
+                            {{ $chat->name }}
+                        </div>
+                    </a>
                 @endforeach
             </ul>
             <form class="form-horizontal" action="/create-chat" method="POST">
