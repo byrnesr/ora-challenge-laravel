@@ -9,6 +9,11 @@
 
                 <div class="panel-body">
                     You are logged in!
+                    <ul>
+                        <li>
+                            <a href="{{ url('/chats') }}" method="GET">Chats</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
