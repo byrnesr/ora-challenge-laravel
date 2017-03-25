@@ -11,8 +11,6 @@
 |
 */
 
-Route::get('/', 'UsersController@index');
+Auth::routes();
 
-Route::post('register', 'UsersController@store');
-
-Route::get('register/create', 'UsersController@create');
+Route::get('/home', 'HomeController@index');
