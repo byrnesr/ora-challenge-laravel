@@ -5,15 +5,36 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2>Profile Page</h2>
-                <button type="button" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-edit"></span> Edit
-                </button>
             </div>
+            @if (session()->has('flash_notification.message'))
+                <div class="alert alert-{{ session('flash_notification.level') }}">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
+                    {!! session('flash_notification.message') !!}
+                </div>
+            @endif
             <div class="panel-body">
-                <h4>ID: {{ Auth::user()->id }}</h4>
-                <h4>Name: {{ Auth::user()->name }}</h4>
-                <h4>Email: {{ Auth::user()->email }}</h4>
+                <form class="form-horizontal" action='/update' method="POST">
+                    {{ csrf_field() }}
+                    <fieldset>
+                        <div class="control-group">
+                            <label class="control-label" for="id">ID: {{ Auth::user()->id }}</label>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="name">Name:</label>
+                            <input name="name" id="name" class="input-large" type="text" value="{{ Auth::user()->name }}">
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="email">Email:</label>
+                            <input name="email" id="email" class="input-large" type="text" value="{{ Auth::user()->email }}">
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <button class="btn btn-success">Save Changes</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
             </div>
         </div>
     </div>
