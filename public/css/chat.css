@@ -2,13 +2,10 @@
 /* Change Body Attributes */
 html, body {
     font-family: 'Open Sans', serif;
-    background-color: blanchedalmond;
     height: 100%;
 }
 .fill {
     height: 100%;
-    padding-top: 5%;
-    padding-bottom: 5%;
 }
 
 
@@ -118,6 +115,7 @@ html, body {
 {
     padding: 8px 10px 5px;
     border-bottom: 1px solid #ddd;
+    width: 50%;
 }
 /* Message Sender */
 .message-wrap .media-heading
@@ -186,7 +184,7 @@ html, body {
 /* For Conversations and Contacts */
 .conversation .media-body, .contact .media-body {
     display: block;
-    width: 100%;
+    width: 60%;
 }
 
 /* Animate Side Information Menu */

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
         <div class="panel-heading">
             <h2>Chats</h2>
         </div>
@@ -17,11 +17,35 @@
                 @foreach ($chats as $chat)
                     <a href='/chat/{{ $chat->id }}'>
                         <div>
-                            {{ $chat->name }}
+                            <h3>{{ $chat->name }}</h3>
+                        </div>
+                        @if ($chat->last_message != null)
+                            <h5>Last Message: </h5>
+                            <div class="msg">
+                                <div class="media-body">
+                                    <small class="pull-right time"><i class="fa fa-clock-o"></i> {{ $chat->created_at }}</small>
+
+                                    <h5 class="media-heading">{{ $chat->user_name }}</h5>
+                                    <small class="col-sm-11">{{ $chat->body }}</small>
+                                </div>
+                            </div>
+                        @else
+                            <div class="msg">
+                                <p>
+                                    There are no messages in this Chat yet!
+                                </p>
+                            </div>
+                        @endif
+
+                        <h5>Users: </h5>
+                        <div>
+                            
                         </div>
                     </a>
                 @endforeach
             </ul>
+        </div>
+        <div class="panel-body">
             <form class="form-horizontal" action="/create-chat" method="POST">
                 {{ csrf_field() }}
                 <fieldset>
@@ -31,16 +55,16 @@
 
                     <!-- Text input-->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for="name">Chat Name</label>
-                        <div class="col-md-6">
+                        <label class="col-md-1 control-label" for="name">Chat Name</label>
+                        <div class="col-lg-3">
                             <input id="name" name="name" type="text" placeholder="Enter chat name here" class="form-control input-md" required="">
                         </div>
                     </div>
 
                     <!-- Button -->
                     <div class="form-group">
-                        <label class="col-md-4 control-label" for=""></label>
-                        <div class="col-md-4">
+                        <label class="col-md-1 control-label" for=""></label>
+                        <div class="col-md-2">
                             <button id="" name="" class="btn btn-primary">Add Chat</button>
                         </div>
                     </div>

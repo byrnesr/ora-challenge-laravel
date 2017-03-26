@@ -26,7 +26,12 @@ class ChatController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(){
-        $chats = DB::table('chats')->get();
+        $chats = DB::table('chats')
+            ->leftJoin('messages', 'chats.last_message', '=', 'messages.id')
+            ->leftJoin('users', 'messages.user_id', '=', 'users.id')
+            ->select('chats.*', 'messages.body', DB::raw('users.name as user_name'), 'messages.created_at')
+            ->get();
+
         return view('chat.chat-list', compact('chats'));
     }
 
@@ -70,7 +75,10 @@ class ChatController extends Controller
             'chat_id' => $id,
             'user_id' => Auth::user()->id,
         ]);
+        $chat = Chat::find($id);
         $message->save();
+        $chat->last_message = $message->id;
+        $chat->save();
         return redirect('/chat/'.$id);
     }
 }

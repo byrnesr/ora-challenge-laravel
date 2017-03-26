@@ -12,7 +12,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/chat.css') }}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
 
     <!-- Scripts -->
     <script>
@@ -61,7 +64,10 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
-                                        <a href="{{ url('/profile') }}" method="GET">Profile</a>
+                                        <a href="{{ url('/profile') }}">View Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ url('/chats') }}">View Chats</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
