@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use App\Chat;
 use App\Message;
+use App\ChatUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -31,8 +32,10 @@ class ChatController extends Controller
             ->leftJoin('users', 'messages.user_id', '=', 'users.id')
             ->select('chats.*', 'messages.body', DB::raw('users.name as user_name'), 'messages.created_at')
             ->get();
-
-        return view('chat.chat-list', compact('chats'));
+        $chat_users = DB::table('chat_users')
+            ->join('users', 'chat_users.user_id', '=', 'users.id')
+            ->get();
+        return view('chat.chat-list', compact('chats', 'chat_users'));
     }
 
     /**
@@ -76,6 +79,18 @@ class ChatController extends Controller
             'user_id' => Auth::user()->id,
         ]);
         $chat = Chat::find($id);
+        $chat_users = DB::table('chat_users')
+            ->select('user_id')
+            ->where('chat_id', $id)
+            ->where('user_id', Auth::user()->id)
+            ->get();
+        if($chat_users->isEmpty()){
+            $chat_user = ChatUser::create([
+                'user_id' => Auth::user()->id,
+                'chat_id' => $id
+            ]);
+            $chat_user->save();
+        }
         $message->save();
         $chat->last_message = $message->id;
         $chat->save();

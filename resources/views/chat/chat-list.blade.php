@@ -15,33 +15,42 @@
         <div class="panel-body">
             <ul>
                 @foreach ($chats as $chat)
-                    <a href='/chat/{{ $chat->id }}'>
-                        <div>
-                            <h3>{{ $chat->name }}</h3>
-                        </div>
-                        @if ($chat->last_message != null)
-                            <h5>Last Message: </h5>
-                            <div class="msg">
-                                <div class="media-body">
-                                    <small class="pull-right time"><i class="fa fa-clock-o"></i> {{ $chat->created_at }}</small>
-
-                                    <h5 class="media-heading">{{ $chat->user_name }}</h5>
-                                    <small class="col-sm-11">{{ $chat->body }}</small>
+                    <li>
+                        <div class="chat-area">
+                            <a class="chat-link" href='/chat/{{ $chat->id }}'>
+                                <div>
+                                    <h3>{{ $chat->name }}</h3>
                                 </div>
-                            </div>
-                        @else
-                            <div class="msg">
-                                <p>
-                                    There are no messages in this Chat yet!
-                                </p>
-                            </div>
-                        @endif
+                                @if ($chat->last_message != null)
+                                    <h5>Last Message: </h5>
+                                    <div class="msg">
+                                        <div class="media-body">
+                                            <small class="pull-right time"><i class="fa fa-clock-o"></i> {{ $chat->created_at }}</small>
 
-                        <h5>Users: </h5>
-                        <div>
-                            
+                                            <h5 class="media-heading">{{ $chat->user_name }}</h5>
+                                            <small class="col-sm-11">{{ $chat->body }}</small>
+                                        </div>
+                                    </div>
+                                    <h5>Users: </h5>
+                                    <div>
+                                        <p>
+                                        @foreach ($chat_users as $chat_user)
+                                            @if ($chat_user->chat_id == $chat->id)
+                                                {{ $chat_user->name }}
+                                            @endif
+                                        @endforeach
+                                        </p>
+                                    </div>
+                                @else
+                                    <div class="msg">
+                                        <p>
+                                            There are no messages in this Chat yet!
+                                        </p>
+                                    </div>
+                                @endif
+                            </a>
                         </div>
-                    </a>
+                    </li>
                 @endforeach
             </ul>
         </div>

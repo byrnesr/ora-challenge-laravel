@@ -93,7 +93,18 @@ html, body {
 .conversation:hover {
     background-color: whitesmoke;
 }
+ul {
+    list-style-type: none;
+}
+.chat-area {
+    width: 60%;
+    background: whitesmoke;
+    border-radius: 10px;
+}
 
+.chat-link:hover{
+    text-decoration: none;
+}
 /******************* CONTACTS ***************/
 /* Contact Item */
 .contact {
@@ -115,7 +126,7 @@ html, body {
 {
     padding: 8px 10px 5px;
     border-bottom: 1px solid #ddd;
-    width: 50%;
+    width: 90%;
 }
 /* Message Sender */
 .message-wrap .media-heading
