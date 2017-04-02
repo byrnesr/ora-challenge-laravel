@@ -14,3 +14,7 @@
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/profile', 'HomeController@show');
+
+Route::post('/update', 'HomeController@edit');
