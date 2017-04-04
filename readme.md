@@ -31,11 +31,17 @@ Navigate to app/config/database.php and find the line:
 And change 'laravel_db' to the name of your SQL database. 
 Also change any other information like username and password that are necessary to access your database.
 
+You will then need to run:
+    
+    php artisan migrate
+    
 Finally run:
 
     php artisan serve
     
 and navigate to localhost:8000 in your browser.
+
+If you are directed to the Login page you are all done!
 
 
 ## Credits
