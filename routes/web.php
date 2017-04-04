@@ -11,6 +11,7 @@
 |
 */
 
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
@@ -18,3 +19,11 @@ Route::get('/home', 'HomeController@index');
 Route::get('/profile', 'HomeController@show');
 
 Route::post('/update', 'HomeController@edit');
+
+Route::get('/chats', 'ChatController@index');
+
+Route::post('/create-chat', 'ChatController@create');
+
+Route::get('/chat/{id}', 'ChatController@show');
+
+Route::post('/chat/{id}/send-message', 'ChatController@newMessage');
